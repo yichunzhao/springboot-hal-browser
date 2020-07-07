@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -24,6 +25,14 @@ public class Book {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @ManyToMany(mappedBy = "books", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private Set<Author> authors;
+    private Set<Author> authors = new HashSet<>();
+
+    public void addAuthor(Author author) {
+        if (author == null) throw new IllegalArgumentException("Argument should not be a null");
+
+        //forming bi-directional association from the Book by one kick.
+        author.addBook(this);
+        authors.add(author);
+    }
 
 }

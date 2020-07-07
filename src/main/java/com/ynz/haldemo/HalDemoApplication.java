@@ -10,15 +10,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.math.BigDecimal;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.toSet;
+import java.util.HashSet;
 
 @SpringBootApplication
 @RequiredArgsConstructor
 public class HalDemoApplication implements CommandLineRunner {
     private final BookRepository bookRepository;
-    private final AuthorRepository authorRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(HalDemoApplication.class, args);
@@ -29,19 +26,18 @@ public class HalDemoApplication implements CommandLineRunner {
         Author author1 = Author.builder()
                 .firstName("Eric")
                 .lastName("Evans")
+                .books(new HashSet<>())
                 .build();
 
         Book book1 = Book.builder()
-                .authors(Stream.of(author1).collect(toSet()))
                 .price(BigDecimal.valueOf(435.00))
                 .title("Domain Driven Design")
+                .authors(new HashSet<>())
                 .build();
 
-        author1.setBooks(Stream.of(book1).collect(toSet()));
+        //associate book and author in bi-direction.
+        book1.addAuthor(author1);
 
         bookRepository.save(book1);
-        authorRepository.save(author1);
-
-
     }
 }

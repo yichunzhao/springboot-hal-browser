@@ -29,5 +29,10 @@ public class Author {
     )
     private Set<Book> books = new HashSet<>();
 
+    public void addBook(Book book) {
+        if (book == null) throw new IllegalArgumentException("Book should not be a null value");
+        books.add(book);
+    }
+
 
 }
