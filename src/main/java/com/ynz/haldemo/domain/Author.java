@@ -22,7 +22,7 @@ public class Author {
     private String firstName;
     private String lastName;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "Author_Book",
             joinColumns = @JoinColumn(name = "Author_Id"),
             inverseJoinColumns = @JoinColumn(name = "Book_Id")
