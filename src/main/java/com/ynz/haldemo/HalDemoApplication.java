@@ -38,5 +38,13 @@ public class HalDemoApplication implements CommandLineRunner {
         book1.addAuthor(author1);
 
         bookRepository.save(book1);
+
+
+        Author author2 = Author.builder().firstName("Daoqi").lastName("Yang").books(new HashSet<>()).build();
+        Book book2 = Book.builder().authors(new HashSet<>()).price(BigDecimal.valueOf(320.99))
+                .title("Java TM Persistence with JPA").build();
+
+        book2.addAuthor(author2);
+        bookRepository.save(book2);
     }
 }
