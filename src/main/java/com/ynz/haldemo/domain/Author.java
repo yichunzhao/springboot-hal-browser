@@ -1,19 +1,17 @@
 package com.ynz.haldemo.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Data
 public class Author {
     @Id
     @GeneratedValue
@@ -22,10 +20,15 @@ public class Author {
     private String firstName;
     private String lastName;
 
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "Author_Book",
             joinColumns = @JoinColumn(name = "Author_Id"),
             inverseJoinColumns = @JoinColumn(name = "Book_Id")
     )
-    private Set<Book> books;
+    private Set<Book> books = new HashSet<>();
+
+
+
 }

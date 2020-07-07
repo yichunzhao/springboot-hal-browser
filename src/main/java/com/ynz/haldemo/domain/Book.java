@@ -1,23 +1,17 @@
 package com.ynz.haldemo.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Data
 public class Book {
 
     @Id
@@ -27,7 +21,9 @@ public class Book {
     private String title;
     private BigDecimal price;
 
-    @ManyToMany(mappedBy = "books")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @ManyToMany(mappedBy = "books",cascade = CascadeType.PERSIST)
     private Set<Author> authors;
 
 }

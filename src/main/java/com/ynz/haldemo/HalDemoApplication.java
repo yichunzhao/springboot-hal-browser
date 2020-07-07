@@ -26,20 +26,20 @@ public class HalDemoApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-		Author author1 = Author.builder()
+        Author author1 = Author.builder()
                 .firstName("Eric")
                 .lastName("Evans")
                 .build();
 
-		Book book1 = Book.builder()
+        Book book1 = Book.builder()
                 .authors(Stream.of(author1).collect(toSet()))
                 .price(BigDecimal.valueOf(435.00))
-				.title("Domain Driven Design")
+                .title("Domain Driven Design")
                 .build();
 
-		bookRepository.save(book1);
-		//authorRepository.save(author1);
+        author1.setBooks(Stream.of(book1).collect(toSet()));
 
-
+        bookRepository.save(book1);
+        authorRepository.save(author1);
     }
 }
