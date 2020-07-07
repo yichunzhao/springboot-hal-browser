@@ -41,5 +41,7 @@ public class HalDemoApplication implements CommandLineRunner {
 
         bookRepository.save(book1);
         authorRepository.save(author1);
+
+
     }
 }

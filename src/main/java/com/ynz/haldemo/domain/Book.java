@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Builder
 @Data
 public class Book {
@@ -23,7 +23,7 @@ public class Book {
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @ManyToMany(mappedBy = "books",cascade = CascadeType.PERSIST)
+    @ManyToMany(mappedBy = "books", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Set<Author> authors;
 
 }
