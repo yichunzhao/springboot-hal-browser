@@ -2,7 +2,6 @@ package com.ynz.haldemo;
 
 import com.ynz.haldemo.domain.Author;
 import com.ynz.haldemo.domain.Book;
-import com.ynz.haldemo.repository.AuthorRepository;
 import com.ynz.haldemo.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
