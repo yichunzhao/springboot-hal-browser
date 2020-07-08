@@ -3,6 +3,7 @@ package com.ynz.haldemo.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -17,7 +18,9 @@ public class Author {
     @GeneratedValue
     private UUID id;
 
+    @NotBlank
     private String firstName;
+    @NotBlank
     private String lastName;
 
     @EqualsAndHashCode.Exclude

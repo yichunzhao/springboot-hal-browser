@@ -3,6 +3,7 @@ package com.ynz.haldemo.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,6 +20,7 @@ public class Book {
     @GeneratedValue
     private UUID id;
 
+    @NotBlank
     private String title;
     private BigDecimal price;
 
