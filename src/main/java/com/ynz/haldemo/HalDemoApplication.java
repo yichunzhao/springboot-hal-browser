@@ -10,6 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toSet;
 
 @SpringBootApplication
 @RequiredArgsConstructor
@@ -46,5 +49,17 @@ public class HalDemoApplication implements CommandLineRunner {
 
         book2.addAuthor(author2);
         bookRepository.save(book2);
+
+        Author author3 = Author.builder().firstName("K.Sam").lastName("Shanmugan").books(new HashSet<>()).build();
+        Author author4 = Author.builder().firstName("A.M.").lastName("Breipohl").books(new HashSet<>()).build();
+
+        Book book3 = Book.builder().authors(new HashSet<>())
+                .price(BigDecimal.valueOf(545)).title("Random Signals").build();
+
+        book3.addAuthor(author3);
+        book3.addAuthor(author4);
+
+        bookRepository.save(book3);
+
     }
 }

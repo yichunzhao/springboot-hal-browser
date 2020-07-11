@@ -5,7 +5,6 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -27,7 +26,7 @@ public class Book {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @ManyToMany(mappedBy = "books", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private Set<Author> authors = new HashSet<>();
+    private Set<Author> authors;
 
     public void addAuthor(Author author) {
         if (author == null) throw new IllegalArgumentException("Argument should not be a null");

@@ -30,7 +30,7 @@ public class Author {
             joinColumns = @JoinColumn(name = "Author_Id"),
             inverseJoinColumns = @JoinColumn(name = "Book_Id")
     )
-    private Set<Book> books = new HashSet<>();
+    private Set<Book> books;
 
     public void addBook(Book book) {
         if (book == null) throw new IllegalArgumentException("Book should not be a null value");
